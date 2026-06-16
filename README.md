@@ -2,79 +2,81 @@
 
 # 🤖 GPT-2 From Scratch
 
-### Building a Decoder-Only Transformer from the Ground Up using PyTorch
+### Building a Decoder-Only Transformer Language Model using PyTorch
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.x-red)
-![Transformer](https://img.shields.io/badge/Architecture-GPT-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-
-<img src="assets/banner.png" width="900">
+![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.x-red?style=for-the-badge)
+![Transformer](https://img.shields.io/badge/Architecture-GPT-green?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
 </div>
 
 ---
 
+<p align="center">
+  <img src="assets/banner.png" width="100%">
+</p>
+
+---
+
 ## 🚀 Overview
 
-This project implements a **GPT-style Transformer Language Model** completely from scratch using **PyTorch**.
+This project implements a **GPT-style Transformer Language Model completely from scratch** using PyTorch.
 
-The goal is to understand every component of a modern LLM:
+Instead of relying on existing frameworks such as Hugging Face Transformers, every major component is implemented manually to understand how modern Large Language Models work internally.
 
-- Tokenization
-- Embeddings
-- Self-Attention
-- Multi-Head Attention
-- Feed Forward Networks
-- Layer Normalization
-- Residual Connections
-- Autoregressive Generation
+### Key Concepts Implemented
 
-No HuggingFace model is used.
+✅ Tokenization using Tiktoken
 
----
+✅ Token & Positional Embeddings
 
-# 📸 Demo
+✅ Multi-Head Self Attention
 
-## Training
+✅ Feed Forward Networks
 
-<img src="assets/training.png" width="700">
+✅ Layer Normalization
 
----
+✅ Residual Connections
 
-## Text Generation
+✅ Causal Masking
 
-```text
-Prompt:
-
-ROMEO:
-
-Generated:
-
-ROMEO:
-My lord, the stars have spoken of thy fate tonight...
-```
+✅ Autoregressive Text Generation
 
 ---
 
-# 🏗️ Architecture
+# 🏗️ Transformer Architecture
 
-<img src="assets/architecture.png" width="900">
+<p align="center">
+  <img src="assets/transformer.png" width="900">
+</p>
+
+---
+
+# 🧠 GPT Architecture
+
+<p align="center">
+  <img src="assets/architecture.png" width="900">
+</p>
 
 ### Model Flow
 
 ```text
 Input Text
     ↓
-Tokenizer
+Tokenizer (tiktoken)
     ↓
 Token IDs
     ↓
-Embeddings
+Token Embeddings
+        +
+Positional Embeddings
     ↓
 Transformer Blocks
     ↓
 Linear Head
+    ↓
+Vocabulary Logits
     ↓
 Next Token Prediction
 ```
@@ -85,6 +87,13 @@ Next Token Prediction
 
 ```bash
 gpt2-from-scratch/
+│
+├── assets/
+│   ├── architecture.png
+│   ├── banner.png
+│   ├── sample_generation.png
+│   ├── training.png
+│   └── transformer.png
 │
 ├── data/
 │   └── input.txt
@@ -104,11 +113,17 @@ gpt2-from-scratch/
 
 # ⚙️ Installation
 
+Clone the repository:
+
 ```bash
 git clone https://github.com/pritam1952/gpt2-from-scratch.git
 
 cd gpt2-from-scratch
+```
 
+Create a virtual environment:
+
+```bash
 python -m venv venv
 ```
 
@@ -134,9 +149,9 @@ pip install -r requirements.txt
 
 # 📚 Dataset
 
-Place your corpus in:
+Place your training corpus inside:
 
-```bash
+```text
 data/input.txt
 ```
 
@@ -145,11 +160,19 @@ Supported datasets:
 - Shakespeare
 - TinyStories
 - WikiText
-- Custom datasets
+- Custom text corpora
 
 ---
 
-# 🧠 Model Configuration
+# ⚡ Training
+
+Train the model:
+
+```bash
+python train.py
+```
+
+Example configuration:
 
 ```python
 GPT_CONFIG = {
@@ -163,15 +186,7 @@ GPT_CONFIG = {
 }
 ```
 
----
-
-# 🏋️ Training
-
-```bash
-python train.py
-```
-
-Training saves:
+Model checkpoints are saved as:
 
 ```bash
 gpt.pt
@@ -179,76 +194,94 @@ gpt.pt
 
 ---
 
-# 🎯 Generate Text
+# 📈 Training Results
+
+<p align="center">
+  <img src="assets/training.png" width="800">
+</p>
+
+The training loss decreases steadily, indicating successful learning of language patterns from the dataset.
+
+---
+
+# 🎯 Text Generation
+
+Generate text using the trained model:
 
 ```bash
 python generate.py
 ```
 
+---
+
+# 📝 Sample Output
+
+<p align="center">
+  <img src="assets/sample_generation.png" width="850">
+</p>
+
 Example:
 
 ```text
 Prompt:
-To be, or not to be
 
-Output:
-To be, or not to be that is the question...
+ROMEO:
+
+Generated:
+
+ROMEO:
+My lord, the stars have spoken of thy fate tonight...
 ```
 
 ---
 
-# 📈 Training Results
+# 🔬 Learning Objectives
 
-| Epoch | Loss |
-|---------|---------|
-| 1 | 4.23 |
-| 2 | 3.78 |
-| 3 | 3.41 |
+This project was built to deeply understand:
 
----
-
-# 🔬 What I Learned
-
-✅ Transformer Architecture
-
-✅ Self-Attention
-
-✅ Multi-Head Attention
-
-✅ GPT Training Pipeline
-
-✅ Language Modeling
-
-✅ PyTorch Internals
+- Transformer Architecture
+- Self-Attention Mechanism
+- Decoder-Only Models
+- GPT Training Pipeline
+- Language Modeling
+- Tokenization
+- PyTorch Internals
 
 ---
 
 # 🚧 Future Improvements
 
 - GPT-2 124M Replica
+- Larger Context Length
 - Flash Attention
 - Mixed Precision Training
+- LoRA Fine-Tuning
 - GPU Optimization
-- Fine-Tuning Pipeline
-- LoRA Support
-- Evaluation Benchmarks
+- Model Evaluation Benchmarks
+- Hugging Face Compatibility
 
 ---
 
 # 🛠️ Tech Stack
 
-| Tool | Usage |
-|--------|--------|
-| Python | Core Language |
-| PyTorch | Deep Learning |
+| Technology | Purpose |
+|------------|---------|
+| Python | Programming Language |
+| PyTorch | Deep Learning Framework |
 | Tiktoken | Tokenization |
-| NumPy | Data Processing |
+| NumPy | Numerical Computing |
 
 ---
 
-# 🌟 Star History
+# ⭐ Repository Stats
 
-If you like this project, consider giving it a ⭐
+If you found this project useful, consider giving it a star.
+
+```bash
+⭐ Star the repo
+🍴 Fork the project
+🚀 Build your own GPT
+```
 
 ---
 
@@ -258,8 +291,8 @@ If you like this project, consider giving it a ⭐
 
 ### Pritam Kumar
 
-<a href="https://github.com/pritam1952">
-<img src="https://img.shields.io/badge/GitHub-Profile-black?style=for-the-badge&logo=github">
-</a>
+[GitHub Profile](https://github.com/pritam1952)
+
+Building Large Language Models from First Principles.
 
 </div>
