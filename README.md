@@ -1,25 +1,89 @@
-# GPT-2 From Scratch
+<div align="center">
 
-A minimal implementation of a GPT-style language model built completely from scratch using PyTorch. This project demonstrates how decoder-only Transformers work internally, including tokenization, self-attention, training, and autoregressive text generation.
+# 🤖 GPT-2 From Scratch
 
-## Features
+### Building a Decoder-Only Transformer from the Ground Up using PyTorch
 
-- GPT-style Transformer architecture
-- Multi-Head Self-Attention
-- Feed Forward Networks
-- Residual Connections & Layer Normalization
-- Token & Positional Embeddings
-- Causal Masking
-- Custom Dataset Pipeline
-- Training Loop with Checkpoint Saving
-- Text Generation Script
-- GPT-2 Tokenizer using Tiktoken
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.x-red)
+![Transformer](https://img.shields.io/badge/Architecture-GPT-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+<img src="assets/banner.png" width="900">
+
+</div>
 
 ---
 
-## Project Structure
+## 🚀 Overview
+
+This project implements a **GPT-style Transformer Language Model** completely from scratch using **PyTorch**.
+
+The goal is to understand every component of a modern LLM:
+
+- Tokenization
+- Embeddings
+- Self-Attention
+- Multi-Head Attention
+- Feed Forward Networks
+- Layer Normalization
+- Residual Connections
+- Autoregressive Generation
+
+No HuggingFace model is used.
+
+---
+
+# 📸 Demo
+
+## Training
+
+<img src="assets/training.png" width="700">
+
+---
+
+## Text Generation
 
 ```text
+Prompt:
+
+ROMEO:
+
+Generated:
+
+ROMEO:
+My lord, the stars have spoken of thy fate tonight...
+```
+
+---
+
+# 🏗️ Architecture
+
+<img src="assets/architecture.png" width="900">
+
+### Model Flow
+
+```text
+Input Text
+    ↓
+Tokenizer
+    ↓
+Token IDs
+    ↓
+Embeddings
+    ↓
+Transformer Blocks
+    ↓
+Linear Head
+    ↓
+Next Token Prediction
+```
+
+---
+
+# 📂 Project Structure
+
+```bash
 gpt2-from-scratch/
 │
 ├── data/
@@ -33,61 +97,30 @@ gpt2-from-scratch/
 │
 ├── gpt.pt
 ├── requirements.txt
-├── .gitignore
 └── README.md
 ```
 
 ---
 
-## Model Architecture
-
-```text
-Input Text
-    ↓
-Tokenizer (tiktoken)
-    ↓
-Token IDs
-    ↓
-Token Embeddings
-    +
-Positional Embeddings
-    ↓
-Transformer Blocks
-    ├── Multi-Head Attention
-    ├── Feed Forward Network
-    ├── LayerNorm
-    └── Residual Connections
-    ↓
-Linear Head
-    ↓
-Vocabulary Logits
-```
-
----
-
-## Installation
-
-Clone the repository:
+# ⚙️ Installation
 
 ```bash
 git clone https://github.com/pritam1952/gpt2-from-scratch.git
 
 cd gpt2-from-scratch
-```
 
-Create and activate a virtual environment:
+python -m venv venv
+```
 
 ### Windows
 
 ```bash
-python -m venv venv
 venv\Scripts\activate
 ```
 
-### Linux / macOS
+### Linux / Mac
 
 ```bash
-python -m venv venv
 source venv/bin/activate
 ```
 
@@ -99,32 +132,24 @@ pip install -r requirements.txt
 
 ---
 
-## Dataset
+# 📚 Dataset
 
-Place your training corpus inside:
+Place your corpus in:
 
-```text
+```bash
 data/input.txt
 ```
 
-Example datasets:
+Supported datasets:
 
 - Shakespeare
 - TinyStories
 - WikiText
-- Any custom text corpus
+- Custom datasets
 
 ---
 
-## Training
-
-Run:
-
-```bash
-python train.py
-```
-
-Example model configuration:
+# 🧠 Model Configuration
 
 ```python
 GPT_CONFIG = {
@@ -138,17 +163,23 @@ GPT_CONFIG = {
 }
 ```
 
-Training saves model weights as:
+---
 
-```text
+# 🏋️ Training
+
+```bash
+python train.py
+```
+
+Training saves:
+
+```bash
 gpt.pt
 ```
 
 ---
 
-## Text Generation
-
-Generate text using a trained model:
+# 🎯 Generate Text
 
 ```bash
 python generate.py
@@ -160,77 +191,75 @@ Example:
 Prompt:
 To be, or not to be
 
-Generated:
+Output:
 To be, or not to be that is the question...
 ```
 
 ---
 
-## Learning Objectives
+# 📈 Training Results
 
-This project was built to gain a deeper understanding of:
-
-- Transformer Architecture
-- Self-Attention Mechanism
-- Language Modeling
-- GPT Training Pipeline
-- Tokenization
-- Autoregressive Text Generation
-- PyTorch Model Development
+| Epoch | Loss |
+|---------|---------|
+| 1 | 4.23 |
+| 2 | 3.78 |
+| 3 | 3.41 |
 
 ---
 
-## Future Improvements
+# 🔬 What I Learned
 
-- GPT-2 124M Architecture
-- Larger Context Length
+✅ Transformer Architecture
+
+✅ Self-Attention
+
+✅ Multi-Head Attention
+
+✅ GPT Training Pipeline
+
+✅ Language Modeling
+
+✅ PyTorch Internals
+
+---
+
+# 🚧 Future Improvements
+
+- GPT-2 124M Replica
+- Flash Attention
 - Mixed Precision Training
 - GPU Optimization
-- Model Evaluation Metrics
-- Fine-Tuning Support
-- Flash Attention
-- Checkpoint Resuming
+- Fine-Tuning Pipeline
+- LoRA Support
+- Evaluation Benchmarks
 
 ---
 
-## Tech Stack
+# 🛠️ Tech Stack
 
-- Python
-- PyTorch
-- Tiktoken
-
----
-
-## Results
-
-Example training output:
-
-```text
-Epoch 1 | Loss: 4.23
-Epoch 2 | Loss: 3.78
-Epoch 3 | Loss: 3.41
-```
-
-Example generation:
-
-```text
-Prompt: ROMEO:
-Generated:
-ROMEO: My lord, I shall return before the morning light...
-```
+| Tool | Usage |
+|--------|--------|
+| Python | Core Language |
+| PyTorch | Deep Learning |
+| Tiktoken | Tokenization |
+| NumPy | Data Processing |
 
 ---
 
-## License
+# 🌟 Star History
 
-This project is licensed under the MIT License.
+If you like this project, consider giving it a ⭐
 
 ---
 
-## Author
+<div align="center">
 
-**Pritam Kumar**
+## 👨‍💻 Author
 
-GitHub: https://github.com/pritam1952
+### Pritam Kumar
 
-If you found this project useful, consider giving it a ⭐ on GitHub.
+<a href="https://github.com/pritam1952">
+<img src="https://img.shields.io/badge/GitHub-Profile-black?style=for-the-badge&logo=github">
+</a>
+
+</div>
